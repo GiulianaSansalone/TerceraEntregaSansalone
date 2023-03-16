@@ -55,7 +55,7 @@ ROOT_URLCONF = 'TerceraEntregaSansalone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/Lenovo/PycharmProjects/TerceraEntregaSansalone/TerceraEntregaSansalone/Templates/'],
+        'DIRS': [r'C:\Users\Lenovo\PycharmProjects\TerceraEntregaSansalone\AppCoder\Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
