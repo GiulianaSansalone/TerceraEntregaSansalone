@@ -1,6 +1,11 @@
+'''urls de la AppCodder exclusivamente'''
 from django.urls import path
-from AppCoder.views import vista1, test_template
+from AppCoder.views import index, classes, students, professors, homework
 urlpatterns = [
-    path('vista1/', vista1),
-    path('template/', test_template)
+    path('inicio/', index, name="Inicio"),
+    path('cursos/', classes, name="Cursos"),
+    path('alumnos/', students, name="Alumnos"),
+    path('profesores/', professors, name="Profesores"),
+    path('tareas/', homework, name="Tareas")
+
 ]

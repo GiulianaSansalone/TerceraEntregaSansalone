@@ -2,15 +2,31 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 # Create your views here
+''''Las vistas creadas hasta el momento (terera pre-entrega) 
+no realizan ninguna función más que mostrar los templates cargados'''
+def classes(request):
+    dictionary = dict()
+    template = loader.get_template("Classes.html")
+    doc = template.render(dictionary)
+    return HttpResponse(doc)
+def students(request):
+    dictionary = dict()
+    template = loader.get_template("Students.html")
+    doc = template.render(dictionary)
+    return HttpResponse(doc)
+def professors(request):
+    dictionary = dict()
+    template = loader.get_template("Professors.html")
+    doc = template.render(dictionary)
+    return HttpResponse(doc)
+def homework(request):
+    dictionary = dict()
+    template = loader.get_template("Homework.html")
+    doc = template.render(dictionary)
+    return HttpResponse(doc)
 
-def vista1(request):
-    return HttpResponse('iniciando proyecto')
-
-
-def test_template(self):
-    nom = 'Giuliana'
-    ap = 'Sansalone'
-    diccionario = {'nombre': nom, 'apellido': ap}
-    plantilla = loader.get_template("index.html")
-    doc = plantilla.render(diccionario)
+def index(self):
+    dictionary = dict()
+    template = loader.get_template("index.html")
+    doc = template.render(dictionary)
     return HttpResponse(doc)
