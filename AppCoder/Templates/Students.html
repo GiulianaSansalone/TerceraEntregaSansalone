@@ -11,10 +11,21 @@
 <!--Bloque de código asociado a esta vista -->
     <title>Alumnos</title>
 </head>
-<body>
-<h1> Esta es la sección de los alumnos </h1>
-<h2>Bienvenidos alumnos!</h2>
-<p>Acá iría el contenido sobre los alumnos</p>
-</body>
-{% endblock%}
+
+    <h1>Si es alumno, ingrese sus datos</h1>
+        <form action="{% url 'Alumnos' %}"method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar">
+        </form>
+        {% if students %}
+            {% for student in students %},
+                <p> name: {{ student.name }} </p>
+                <p> surname: {{ student.surname }} </p>
+                <p> mail: {{ student.mail }}</p>
+            {% endfor %}
+        {% else %}
+            <h1>No hay alumnos ingresados</h1>
+        {% endif %}
+    {% endblock %}
 </html>

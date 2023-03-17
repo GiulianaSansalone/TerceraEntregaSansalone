@@ -4,20 +4,20 @@ from django.db import models
 
 
 class Class(models.Model):
-    name = models.CharField(max_length=20)
-    commission = models.IntegerField()
+    name = models.CharField(max_length=30)
+    commission = models.IntegerField(unique=True)
 
 
 class Student(models.Model):
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
-    mail = models.EmailField()
+    mail = models.EmailField(unique=True)
 
 
 class Professor(models.Model):
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
-    mail = models.EmailField()
+    mail = models.EmailField(unique=True)
     profession = models.CharField(max_length=30)
 
 

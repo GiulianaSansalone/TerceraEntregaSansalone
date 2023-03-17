@@ -13,7 +13,19 @@
 </head>
 <body>
 <h1>En esta sección se encuentran las Tareas </h1>
-<p>Acá iría el contenido sobre las tareas</p>
-</body>
-{% endblock%}
+<form action="{% url 'Tareas' %}"method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar">
+        </form>
+        {% if homeworks %}
+            {% for hw in homeworks %},
+                <p> name: {{ homework.name }} </p>
+                <p> date: {{ homework.date }} </p>
+                <p> handed_in: {{ homework.handed_in }}</p>
+            {% endfor %}
+        {% else %}
+            <h1>No hay tareas ingresadas</h1>
+        {% endif %}
+    {% endblock %}
 </html>

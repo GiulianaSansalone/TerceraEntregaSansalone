@@ -5,16 +5,28 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-{% extends "main.html" %}
-{% load static %}
-{% block VariableContent %}
+    {% extends "main.html" %}
+    {% load static %}
+    {% block VariableContent %}
 <!--Bloque de código asociado a esta vista -->
     <title>Profesores</title>
 </head>
 <body>
-<h1>Esta es la sección de los profesores </h1>
-<h2>Bienvenidos profesores!</h2>
-<p>Acá iría el contenido sobre los profesores</p>
-</body>
-{% endblock%}
+<h1>Si es profesor, ingrese sus datos </h1>
+ <form action="{% url 'Profesores' %}"method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar">
+        </form>
+        {% if professors %}
+            {% for prof in professors %},
+                <p> name: {{ professor.name }} </p>
+                <p> surname: {{ professor.surname }} </p>
+                <p> mail: {{ professor.mail }}</p>
+                <p> profession: {{ professor.profession }}</p>
+            {% endfor %}
+        {% else %}
+            <h1>No hay profesores ingresados</h1>
+        {% endif %}
+    {% endblock %}
 </html>

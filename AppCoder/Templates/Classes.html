@@ -3,18 +3,29 @@
 <head>
     {% extends "main.html" %}
     {% load static %}
-    {% block VariableContent %}
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <!--Bloque de código asociado a esta vista -->
+    {% block VariableContent %}
     <title>Cursos</title>
-</head>
-<body>
-<h1> Estos son los cursos </h1>
-<p>Acá iría el contenido sobre los cursos</p>
-</body>
-{% endblock%}
+    </head>
+
+    <h1>Ingrese los datos del curso que desea agregar</h1>
+        <form action="{% url 'Cursos' %}"method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar">
+        </form>
+        {% if classes %}
+            {% for class in classes %},
+                <p> name: {{ class.name }} </p>
+                <p> commission: {{ class.commission }} </p>
+            {% endfor %}
+        {% else %}
+            <h1>No hay cursos por el momento</h1>
+        {% endif %}
+    {% endblock %}
 </html>
