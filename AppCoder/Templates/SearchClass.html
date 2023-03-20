@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+{% extends "main.html" %}
+{% load static %}
+{% block VariableContent %}
+    <title>Busqueda</title>
+    </head>
+    <body>
+    {% if classes %}
+        {% for class in classes %},
+                <p> {{ class }} </p>
+        {% endfor %}
+    {% else %}
+        <h1>No hay cursos por el momento</h1>
+        {% endif %}
+{% endblock %}

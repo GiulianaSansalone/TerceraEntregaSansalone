@@ -2,11 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from AppCoder.models import Class, Student, Professor, Homework
-from AppCoder.forms import ClassForm, StudentForm, ProfessorForm, HomeworkForm
+from AppCoder.forms import ClassForm, StudentForm, ProfessorForm, HomeworkForm, SearchClassForm
 
 # Create your views here
-'''Las vistas creadas hasta el momento (terera pre-entrega) 
-no realizan ninguna función más que mostrar los templates cargados'''
+'''A continuación se muestran vistas que incluyen forms, una por modelo creado.'''
 
 
 def class_(request):
@@ -21,7 +20,8 @@ def class_(request):
             class_save.save()
     all_classes = Class.objects.all()
     context = {'classes': all_classes,
-               'form': ClassForm
+               'form': ClassForm,
+               'search_form': SearchClassForm
                }
     return render(request, 'Classes.html', context=context)
 
@@ -82,9 +82,29 @@ def homework(request):
     return render(request, 'Homework.html', context=context)
 
 
-
+'''Vista del inicio'''
 def index(self):
     dictionary = dict()
     template = loader.get_template("index.html")
     doc = template.render(dictionary)
     return HttpResponse(doc)
+
+
+'''Vista para buscar en la BBDD. Muestra los datos filtrados'''
+
+
+def search_class(request):
+
+    form1 = SearchClassForm(request.GET)
+
+    if form1.is_valid():
+        info = form1.cleaned_data
+        filtered_classes = Class.objects.filter(name__icontains=info['name'])
+        context = {
+            "class": filtered_classes
+        }
+
+        return render(request, "SearchClass.html", context=context)
+    else:
+        response = f'No se han enviado datos'
+        return HttpResponse(response)

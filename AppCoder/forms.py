@@ -23,3 +23,8 @@ class HomeworkForm(forms.Form):
     nombre = forms.CharField(max_length=30)
     fecha = forms.DateField()
     estado = forms.BooleanField()
+
+
+class SearchClassForm(forms.Form):
+    nombre = forms.CharField(max_length=30)
+
